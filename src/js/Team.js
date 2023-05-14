@@ -12,5 +12,11 @@
  * ```
  * */
 export default class Team {
+  constructor(arr) {
+    this.characters = [];
+    arr.forEach((char) => {
+      this.characters.push(char);
+    });
+  }
   // TODO: write your logic here
 }
