@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/main.js",
     "dev": "webpack serve --mode none",
-    "dev1": "nodemon --exec npm start",
+    "dev1": "nodemon ./src/index.js",
     "build": "webpack  --mode production",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",

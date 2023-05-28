@@ -23,16 +23,26 @@
  * ```
  * */
 export function calcTileType(index, boardSize) {
+  console.log('CALC FIELDS')
+  const x = boardSize
   if (boardSize !== 8) return;
   if (index === 0) return 'top-left';
-  if (index === 7) return 'top-right';
-  if (index === 63) return 'bottom-right';
-  if (index === 56) return 'bottom-left';
-  if (index > 0 && index < 7) return 'top';
-  if (index > 56 && index < 63) return 'bottom';
-  if (index === 8 || index === 16 || index === 24 || index === 32 || index === 40 || index === 48) return 'left';
-  if (index === 55 || index === 15 || index === 23 || index === 31 || index === 39 || index === 47) return 'right';
-  return 'center';
+  if (index === x - 1) return 'top-right';
+  if (index === x * x - 1) return 'bottom-right';
+  if (index === x * x - x) return 'bottom-left';
+  if (index > 0 && index < (x - 1)) return 'top';
+  if (index > (x * x - x) && index < x * x - 1) return 'bottom';
+  let leftCells = [];
+  let rightCells = [];
+  for (let i=x; i<(x*x-x); i+=x) {
+  leftCells.push(i);
+  }
+  for (let i=2*x-1; i<(x*x-1); i+=x) {
+    rightCells.push(i);
+  }
+  if (leftCells.findIndex(el => el == index) > -1) return 'left';
+  if (rightCells.findIndex(el => el == index) > -1) return 'right';
+  else return 'center';
   // TODO: ваш код будет тут
   // return 'center';
 }

@@ -36,7 +36,7 @@ export function generateTeam(allowedTypes, maxLevel, characterCount) {
   const chars = [];
   while (i <= characterCount) {
     chars.push(charGen.next().value);
-    i = +1;
+    i += 1;
   }
 
   return new Team(chars);
