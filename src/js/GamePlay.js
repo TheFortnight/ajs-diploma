@@ -66,7 +66,7 @@ export default class GamePlay {
   /**
    * Draws positions (with chars) on boardEl
    *
-   * @param positions array of PositionedCharacter objects
+   * @param positions array of PositionedCharacter objects 
    */
   redrawPositions(positions) {
     for (const cell of this.cells) {
@@ -76,7 +76,12 @@ export default class GamePlay {
     for (const position of positions) {
       const cellEl = this.boardEl.children[position.position];
       const charEl = document.createElement('div');
+      
       charEl.classList.add('character', position.character.type);
+      charEl.setAttribute('level', position.character.level);
+      charEl.setAttribute('attack', position.character.attack);
+      charEl.setAttribute('defence', position.character.defence);
+      charEl.setAttribute('health', position.character.health);
 
       const healthEl = document.createElement('div');
       healthEl.classList.add('health-level');

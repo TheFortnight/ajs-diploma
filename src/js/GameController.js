@@ -29,19 +29,39 @@ export default class GameController {
     }
 
     this.gamePlay.redrawPositions(charPosistions);
+   
+    this.gamePlay.addCellEnterListener(this.onCellEnter);
+    this.gamePlay.addCellLeaveListener(this.onCellLeave);
+    this.gamePlay.addCellClickListener(this.onCellClick);
     // TODO: add event listeners to gamePlay events
     // TODO: load saved stated from stateService
+  }
+
+  getHintDetails = (position) => {
+    const level = position.getAttribute('level');
+    const attack = position.getAttribute('attack');
+    const defence = position.getAttribute('defence');
+    const health = position.getAttribute('health');
+    return `\u{1F396}${level} \u{2694}${attack} \u{1F6E1}${defence} \u{2764}${health}`
   }
 
   onCellClick(index) {
     // TODO: react to click
   }
 
-  onCellEnter(index) {
-    // TODO: react to mouse enter
+  onCellEnter = (index) => {
+    
+    let cellsArr = document.querySelectorAll('.cell');
+    cellsArr = Array.from(cellsArr);
+   
+    if (cellsArr[index].querySelector('.character')) {
+      const position = cellsArr[index].querySelector('.character');
+      const hint = this.getHintDetails(position);
+      this.gamePlay.showCellTooltip(hint, index);
+    }
   }
 
-  onCellLeave(index) {
-    // TODO: react to mouse leave
+  onCellLeave = (index) => {
+    this.gamePlay.hideCellTooltip(index);
   }
 }
