@@ -12,6 +12,7 @@ export default class GamePlay {
     this.newGameListeners = [];
     this.saveGameListeners = [];
     this.loadGameListeners = [];
+    this.isPlayersMove = true;
   }
 
   bindToDOM(container) {
@@ -101,6 +102,10 @@ export default class GamePlay {
    *
    * @param callback
    */
+  getMove() {
+    return this.isPlayersMove;
+  }
+
   addCellEnterListener(callback) {
     this.cellEnterListeners.push(callback);
   }
@@ -206,8 +211,10 @@ export default class GamePlay {
   }
 
   hideCellTooltip(index) {
-    this.cells[index].title = '';
+    this.cells[index].title = ''; 
   }
+
+  
 
   showDamage(index, damage) {
     return new Promise((resolve) => {
